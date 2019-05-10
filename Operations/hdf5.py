@@ -1,15 +1,20 @@
 import h5py
+from time import sleep
+data = h5py.File('data_prepro.h5', 'r+')
 
-data = h5py.File('TRAREAP12903D09025.h5', 'r+')
+import h5py
+filename = 'data_prepro.h5'
+f = h5py.File(filename, 'r')
 
-for key in data.keys():
-    print(key) #Names of the groups in HDF5 file.
+# List all groups
+print("Keys: %s" % f.keys())
+keys = list(f.keys())
 
-#Get the HDF5 group
-group = data[key]
+for key in keys:
+    group_key = key
+    # Get the data
+    print(group_key)
+    print(f[group_key].shape)
+    data = list(f[group_key])
+    print(data[0])
 
-#Checkout what keys are inside that group.
-for key in group.keys():
-    print(key)
-    data = group[key].value
-    print(data)
